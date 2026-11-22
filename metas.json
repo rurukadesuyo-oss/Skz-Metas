@@ -1,9 +1,5 @@
 [
   {
-    "musica": "Chk Chk Boom",
-    "meta": 500000000
-  },
-  {
     "musica": "LALALALA",
     "meta": 395000000
   },
@@ -38,5 +34,9 @@
   {
     "musica": "Do It",
     "meta": 150000000
+  },
+  {
+    "musica": "Chk Chk Boom",
+    "meta": 470000000
   }
 ]
