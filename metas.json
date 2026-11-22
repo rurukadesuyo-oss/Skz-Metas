@@ -12,10 +12,6 @@
     "meta": 150000000
   },
   {
-    "musica": "Youth (Lee Know)",
-    "meta": 60000000
-  },
-  {
     "musica": "Come Play - from the series Arcane League of Legends",
     "meta": 165000000
   },
@@ -37,6 +33,10 @@
   },
   {
     "musica": "RUN IT",
+    "meta": 75000000
+  },
+  {
+    "musica": "Youth (Lee Know)",
     "meta": 75000000
   }
 ]
