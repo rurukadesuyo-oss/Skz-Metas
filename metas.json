@@ -16,10 +16,6 @@
     "meta": 165000000
   },
   {
-    "musica": "Do It",
-    "meta": 150000000
-  },
-  {
     "musica": "Chk Chk Boom",
     "meta": 470000000
   },
@@ -38,5 +34,9 @@
   {
     "musica": "CASE 143",
     "meta": 305000000
+  },
+  {
+    "musica": "Do It",
+    "meta": 150000000
   }
 ]
