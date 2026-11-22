@@ -18,17 +18,23 @@ def buscar_streams_kworb() -> dict:
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    tabela = soup.find("table")
+    tabela_musicas = None
+    for t in soup.find_all("table"):
+        if "Song Title" in t.get_text():
+            tabela_musicas = t
+            break
+
     dados = {}
-    if not tabela:
+    if not tabela_musicas:
         return dados
 
-    for linha in tabela.find_all("tr")[1:]:
-        colunas = [c.get_text(strip=True) for c in linha.find_all("td")]
+    for linha in tabela_musicas.find_all("tr")[1:]:
+        colunas = linha.find_all("td")
         if len(colunas) >= 2:
-            titulo = colunas[0]
-            streams_str = re.sub(r"[^\d]", "", colunas[1])
-            if streams_str:
+            link = colunas[0].find("a")
+            titulo = link.get_text(strip=True) if link else colunas[0].get_text(strip=True)
+            streams_str = re.sub(r"[^\d]", "", colunas[1].get_text())
+            if titulo and streams_str:
                 dados[titulo] = int(streams_str)
     return dados
 
