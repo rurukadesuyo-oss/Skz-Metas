@@ -21,18 +21,26 @@ def buscar_dados_kworb():
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    tabela = soup.find("table")
+    # Procura especificamente a tabela que contém "Song Title"
+    tabela_musicas = None
+    for t in soup.find_all("table"):
+        if "Song Title" in t.get_text():
+            tabela_musicas = t
+            break
+
     musicas = []
-    if not tabela:
+    if not tabela_musicas:
         return pd.DataFrame()
 
-    for linha in tabela.find_all("tr")[1:]:
-        colunas = [c.get_text(strip=True) for c in linha.find_all("td")]
+    for linha in tabela_musicas.find_all("tr")[1:]:
+        colunas = linha.find_all("td")
         if len(colunas) >= 2:
-            titulo = colunas[0]
-            streams_str = re.sub(r"[^\d]", "", colunas[1])
-            daily_str = re.sub(r"[^\d]", "", colunas[2]) if len(colunas) > 2 else "0"
-            if streams_str:
+            # Pega o texto do link <a> da música (evita pegar o número do ranking)
+            link = colunas[0].find("a")
+            titulo = link.get_text(strip=True) if link else colunas[0].get_text(strip=True)
+            streams_str = re.sub(r"[^\d]", "", colunas[1].get_text())
+            daily_str = re.sub(r"[^\d]", "", colunas[2].get_text()) if len(colunas) > 2 else "0"
+            if titulo and streams_str:
                 musicas.append({
                     "Música": titulo,
                     "Streams Totais": int(streams_str),
@@ -90,6 +98,10 @@ with st.sidebar:
         st.rerun()
 
 df = buscar_dados_kworb()
+if df.empty:
+    st.error("Não foi possível encontrar a tabela de músicas no Kworb.")
+    st.stop()
+
 metas, sha_atual = carregar_metas_github()
 
 st.subheader("➕ Adicionar ou atualizar meta")
