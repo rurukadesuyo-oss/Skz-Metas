@@ -16,10 +16,6 @@
     "meta": 150000000
   },
   {
-    "musica": "RUN IT",
-    "meta": 75000000
-  },
-  {
     "musica": "Youth (Lee Know)",
     "meta": 60000000
   },
@@ -38,5 +34,9 @@
   {
     "musica": "Chk Chk Boom",
     "meta": 470000000
+  },
+  {
+    "musica": "RUN IT",
+    "meta": 500000000
   }
 ]
