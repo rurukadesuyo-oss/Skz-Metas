@@ -1,0 +1,41 @@
+name: Verificar Metas SKZ
+
+on:
+  schedule:
+    # Roda todo dia às 12:00 no horário de Brasília (15:00 UTC)
+    - cron: "0 15 * * *"
+    # Roda todo dia às 19:00 no horário de Brasília (22:00 UTC)
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  checar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar arquivos do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar bibliotecas
+        run: pip install requests beautifulsoup4
+
+      - name: Executar verificação de metas
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python checar_automatico.py
+
+      - name: Salvar histórico de metas já notificadas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add notificadas.json || true
+          git diff --staged --quiet || git commit -m "Atualiza metas notificadas"
+          git push
