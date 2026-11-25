@@ -148,5 +148,11 @@
     "meta": 50000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "ALL IN",
+    "meta": 100000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
