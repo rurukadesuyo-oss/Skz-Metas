@@ -184,5 +184,11 @@
     "meta": 100000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "Unfair (Felix)",
+    "meta": 100000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
