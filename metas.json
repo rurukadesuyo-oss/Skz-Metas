@@ -232,5 +232,11 @@
     "meta": 50000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "ITEM",
+    "meta": 100000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
