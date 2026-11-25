@@ -1,74 +1,116 @@
 [
   {
     "musica": "Come Play - from the series Arcane League of Legends",
-    "meta": 165000000
+    "meta": 165000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Chk Chk Boom",
-    "meta": 470000000
+    "meta": 470000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "LALALALA",
-    "meta": 400000000
+    "meta": 400000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "RUN IT",
-    "meta": 75000000
+    "meta": 75000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Youth (Lee Know)",
-    "meta": 60000000
+    "meta": 60000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "CASE 143",
-    "meta": 305000000
+    "meta": 305000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Do It",
-    "meta": 150000000
+    "meta": 150000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Godâs Menu",
-    "meta": 565000000
+    "meta": 565000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Back Door",
-    "meta": 335000000
+    "meta": 335000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "MANIAC",
-    "meta": 495000000
+    "meta": 495000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "MEGAVERSE",
-    "meta": 205000000
+    "meta": 205000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Silent Cry",
-    "meta": 95000000
+    "meta": 95000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "This & That",
-    "meta": 80000000
+    "meta": 80000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Walkin On Water",
-    "meta": 145000000
+    "meta": 145000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Phoenix",
-    "meta": 40000000
+    "meta": 40000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "DIVINE",
-    "meta": 110000000
+    "meta": 110000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Back Then",
-    "meta": 15000000
+    "meta": 15000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
   },
   {
     "musica": "Way Out",
-    "meta": 15000000
+    "meta": 15000000,
+    "tipo": "postagem",
+    "plataforma": "spotify"
+  },
+  {
+    "musica": "CHILL",
+    "meta": 50000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
