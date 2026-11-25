@@ -160,5 +160,11 @@
     "meta": 100000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "Hollow",
+    "meta": 100000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
