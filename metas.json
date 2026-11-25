@@ -238,5 +238,11 @@
     "meta": 100000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "Do It",
+    "meta": 200000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
