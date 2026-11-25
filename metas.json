@@ -154,5 +154,11 @@
     "meta": 100000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "Cover Me",
+    "meta": 100000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
