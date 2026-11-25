@@ -226,5 +226,11 @@
     "meta": 200000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "Another Day",
+    "meta": 50000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
