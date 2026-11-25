@@ -25,6 +25,14 @@ def fmt_num(n: int) -> str:
     return f"{int(n):,}".replace(",", ".")
 
 
+def eh_video_stray_kids(handle: str, titulo: str, descricao: str = "") -> bool:
+    if handle != "jypentertainment":
+        return True
+    texto = f"{titulo} {descricao}".lower()
+    termos = ["stray kids", "스트레이 키즈", "#straykids"]
+    return any(t in texto for t in termos)
+
+
 def buscar_dados_kworb() -> list[dict]:
     headers = {"User-Agent": "Mozilla/5.0"}
     resp = requests.get(KWORB_URL, headers=headers, timeout=25)
@@ -65,9 +73,10 @@ def buscar_dados_youtube(api_key: str) -> list[dict]:
     agora = datetime.now(timezone.utc)
 
     for canal in YOUTUBE_HANDLES:
+        handle = canal["handle"]
         r_ch = requests.get(
             "https://www.googleapis.com/youtube/v3/channels",
-            params={"part": "contentDetails", "forHandle": canal["handle"], "key": api_key},
+            params={"part": "contentDetails", "forHandle": handle, "key": api_key},
             timeout=20,
         )
         if not r_ch.ok:
@@ -85,9 +94,10 @@ def buscar_dados_youtube(api_key: str) -> list[dict]:
         if not uploads_id:
             continue
 
+        max_busca = 30 if handle == "jypentertainment" else 15
         r_pl = requests.get(
             "https://www.googleapis.com/youtube/v3/playlistItems",
-            params={"part": "contentDetails", "playlistId": uploads_id, "maxResults": 15, "key": api_key},
+            params={"part": "contentDetails", "playlistId": uploads_id, "maxResults": max_busca, "key": api_key},
             timeout=20,
         )
         if not r_pl.ok:
@@ -111,6 +121,10 @@ def buscar_dados_youtube(api_key: str) -> list[dict]:
 
         for v in r_vid.json().get("items", []):
             titulo = v.get("snippet", {}).get("title", "Sem título")
+            descricao = v.get("snippet", {}).get("description", "")
+            if not eh_video_stray_kids(handle, titulo, descricao):
+                continue
+
             pub_str = v.get("snippet", {}).get("publishedAt", "")
             views = int(v.get("statistics", {}).get("viewCount", 0) or 0)
             idade_dias = None
@@ -202,7 +216,6 @@ def main():
     ocupadas_yt = {m["musica"] for m in metas if m.get("plataforma") == "youtube"}
     alertas = []
 
-    # 1. Metas salvas no metas.json (Spotify e Playlist YT)
     for item in metas:
         nome = item["musica"]
         meta = int(item["meta"])
@@ -249,7 +262,6 @@ def main():
             ja_avisadas.add(meta)
             notificadas[chave] = sorted(ja_avisadas)
 
-    # 2. Marcos automáticos do YouTube: 1M e múltiplos de 10M (com destaque em 7 dias)
     for v in videos_yt:
         titulo = v["titulo"]
         views = v["views"]
