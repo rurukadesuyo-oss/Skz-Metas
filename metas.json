@@ -142,5 +142,11 @@
     "meta": 50000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "The View",
+    "meta": 50000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
