@@ -124,5 +124,11 @@
     "meta": 50000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "FNF",
+    "meta": 50000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
