@@ -190,5 +190,11 @@
     "meta": 100000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "CEREMONY",
+    "meta": 200000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
