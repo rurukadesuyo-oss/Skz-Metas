@@ -28,6 +28,14 @@ def fmt_num(n: int) -> str:
     return f"{int(n):,}".replace(",", ".")
 
 
+def eh_video_stray_kids(handle: str, titulo: str, descricao: str = "") -> bool:
+    if handle != "jypentertainment":
+        return True
+    texto = f"{titulo} {descricao}".lower()
+    termos = ["stray kids", "스트레이 키즈", "#straykids"]
+    return any(t in texto for t in termos)
+
+
 @st.cache_data(ttl=3600)
 def buscar_dados_kworb():
     headers = {"User-Agent": "Mozilla/5.0"}
@@ -94,12 +102,13 @@ def buscar_dados_youtube(api_key: str):
         if not uploads_id:
             continue
 
+        max_busca = 30 if handle == "jypentertainment" else 15
         r_pl = requests.get(
             "https://www.googleapis.com/youtube/v3/playlistItems",
             params={
                 "part": "contentDetails,snippet",
                 "playlistId": uploads_id,
-                "maxResults": 15,
+                "maxResults": max_busca,
                 "key": api_key,
             },
             timeout=20,
@@ -129,6 +138,10 @@ def buscar_dados_youtube(api_key: str):
 
         for v in r_vid.json().get("items", []):
             titulo = v.get("snippet", {}).get("title", "Sem título")
+            descricao = v.get("snippet", {}).get("description", "")
+            if not eh_video_stray_kids(handle, titulo, descricao):
+                continue
+
             pub_str = v.get("snippet", {}).get("publishedAt", "")
             views = int(v.get("statistics", {}).get("viewCount", 0) or 0)
 
@@ -420,7 +433,7 @@ with aba_yt:
     if not YOUTUBE_API_KEY:
         st.warning("Adicione `YOUTUBE_API_KEY` nos Secrets do Streamlit para ativar o rastreamento do YouTube.")
     elif df_yt.empty:
-        st.warning("Nenhum vídeo retornado pelos canais configurados no momento.")
+        st.warning("Nenhum vídeo do Stray Kids encontrado nos canais configurados no momento.")
     else:
         st.subheader("⚡ Marcos de 10M Batidos em até 7 Dias")
         destaques_7d = df_yt[df_yt["10M em 7 dias"] == True]
@@ -438,7 +451,7 @@ with aba_yt:
         st.subheader("🎧 Metas de Playlist — YouTube (300M / 200M / 100M / 50M)")
         yp1, yp2, yp3 = st.columns([3, 2, 1])
         with yp1:
-            vid_play = st.selectbox("Escolha o vídeo para playlist", df_yt["Título"].tolist(), key="yt_sel_play")
+            vid_play = st.selectbox("Escolha o vídeo do SKZ para playlist", df_yt["Título"].tolist(), key="yt_sel_play")
         with yp2:
             meta_yt_play = st.selectbox("Meta fixa da playlist", options=METAS_PLAYLIST_FIXAS, format_func=fmt_num, key="yt_sel_meta_play")
         with yp3:
