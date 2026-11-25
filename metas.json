@@ -130,5 +130,11 @@
     "meta": 50000000,
     "tipo": "playlist",
     "plataforma": "spotify"
+  },
+  {
+    "musica": "LALALALA (Rock Ver.)",
+    "meta": 50000000,
+    "tipo": "playlist",
+    "plataforma": "spotify"
   }
 ]
